@@ -1,0 +1,22 @@
+
+[settings]
+	chat_prefix = "&8[&a&lGuild&2Games&8] &f"
+	"&a&l&ntoggle&r_&a&l&nmodule&r" = true
+
+[toggles]
+	8ball_command = true
+	math_game = true
+	rng_guessing = true
+	"&a&l&ntoggle&r_&c&l&nmodule&r" = true
+	ai_command = true
+	"&a&l&ntoggle&r_&a&l&nmodule&r" = true
+
+	[toggles.miscellaneous]
+		8ball_command = true
+		ai_command = true
+
+	[toggles.games]
+		math_game = true
+		rng_guessing = true
+		word_scramble_game = true
+
