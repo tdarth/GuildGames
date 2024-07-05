@@ -56,7 +56,7 @@ register("chat", (event) => {
         }
     }
 
-    if (endMatch) {
+    if (endMatch && scrambleGameActive) {
         const username = endMatch[1];
         if (staff.includes(username)) {
             setTimeout(() => {
@@ -88,3 +88,11 @@ register("command", () => {
     scrambleGameActive = false;
     ChatLib.chat(Settings.chatPrefix + "&aForce ended game.")
 }).setName("forceendscramble").setAliases("endscramble", "scrambleend");
+
+register("command", (customWord) => {
+    ChatLib.chat(Settings.chatPrefix + "&aYou started a custom game using the word &2" + customWord + "&a.")
+    currentWord = customWord;
+    scrambledWord = scrambleWord(currentWord);
+    scrambleGameActive = true;
+    ChatLib.command(`gc A Scramble game has started! Unscramble this word: ${scrambledWord} using /gc @scramble guess <word>.`);
+}).setName("setword").setAliases("wordset");
