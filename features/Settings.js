@@ -32,9 +32,8 @@ class Settings {
         category: "Settings"
     })
     infoButton() {
-        import Settings from '../features/Settings';
         Client.currentGui.close()
-        ChatLib.chat(Settings.chatPrefix + "How to use:")
+        ChatLib.chat(this.chatPrefix + "How to use:")
         ChatLib.chat("\n&a #1. Add yourself as a staff. &2/addstaff <Your Username> &a(Case Sensitive!)\n &f \n&a#2 Type &2/gg &aand go to the Toggles category to find all valid commands.\n &f \n&a#3 Type the command in &2guild chat &ato use!\n &f\n &3Bugs or suggestions? &bhttps://discord.gg/4xupsUQt2M&3!")
     }
 
@@ -89,7 +88,6 @@ class Settings {
         this.initialize(this);
         this.setSubcategoryDescription("Toggles", "RNG Guessing", "Games")
         this.setSubcategoryDescription("Toggles", "AI Command", "Miscellaneous")
-        // this.setCategoryDescription("Keybinds", "&b&lHousing&r&3Event&2Helper \n A mod for Housing Events. \n &f \n &2&lTIP:&r &aYou can use {hostname} in the command.")
     }
 }
 
