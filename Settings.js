@@ -94,6 +94,7 @@ class Settings {
 
     constructor() {
         this.initialize(this);
+        this.setCategoryDescription("Settings", "&7Made by &btdarth&7, &7improved by &aBusterBrown1218&7.")
         this.setSubcategoryDescription("Toggles", "RNG Guessing", "Games")
         this.setSubcategoryDescription("Toggles", "AI Command", "Miscellaneous")
     }
