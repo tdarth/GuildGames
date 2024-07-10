@@ -1,2 +1,0 @@
-# Guild Games
-by tdarth
