@@ -27,7 +27,7 @@ function stripColorCodes(message) {
 loadStaffList();
 
 register("chat", (event) => {
-    if (!Settings.enabled || !Settings.scramble) {
+    if (!Settings.enabled || !Settings.scrambleEnabled) {
         return;
     }
 
