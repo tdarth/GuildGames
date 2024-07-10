@@ -1,6 +1,6 @@
 import { words } from '../utils/words';
 import { staff, loadStaffList } from "../commands/addStaff";
-import Settings from '../features/Settings';
+import Settings from '../Settings';
 
 let currentWord = "";
 let scrambledWord = "";

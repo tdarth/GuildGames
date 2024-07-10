@@ -1,72 +1,29 @@
-import Settings from '../features/Settings';
-import { staff, saveStaffList, loadStaffList } from "../commands/addStaff";
+import Settings from "../Settings";
+import { GuessingGame } from "../utils/guessingGame";
 
-let guessinggame = false;
-let targetNumber = 0;
-
-loadStaffList();
-
-function stripColorCodes(message) {
-    return message.replace(/§[0-9A-FK-ORa-fk-or]/g, '');
-}
-
-register("chat", (event) => {
-
-    if (!Settings.enabled || !Settings.rngguess) {
-        return;
-    }
-
-    const message = ChatLib.getChatMessage(event);
-    const cleanMessage = stripColorCodes(message);
-
-    const startRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @rng start (\d+)/;
-    const startMatch = cleanMessage.match(startRegex);
-
-    const endRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @rng end/;
-    const endMatch = cleanMessage.match(endRegex);
-
-    if (startMatch) {
-        const username = startMatch[1];
-        const maxNumber = parseInt(startMatch[2], 10);
-
-        if (staff.includes(username)) {
+new GuessingGame("rng",
+    (args) => {
+        let answer = Math.floor(Math.random() * parseInt(args[0])) + 1
+        setTimeout(() => {
+            ChatLib.command(`gc A guessing game has started! Guess a number between 1 and ${args[0]} using /gc ${Settings.commandPrefix}rng guess <number>!`);
             setTimeout(() => {
-                targetNumber = Math.floor(Math.random() * maxNumber) + 1;
-                ChatLib.command(`gc A guessing game has started! Guess a number between 1 and ${maxNumber} using /gc @rng guess <number>!`);
-                guessinggame = true;
-                setTimeout(() => {
-                    ChatLib.chat(Settings.chatPrefix + "&aThe correct number is &2" + targetNumber + "&a.");
-                }, 50);
+                ChatLib.chat(Settings.chatPrefix + "&aThe correct number is &2" + answer + "&a.");
             }, 50);
-        }
+        }, 50);
+
+        return String(answer);
+    },
+    (username, args, answer) => {
+        if (args[0] != answer) return;
+        setTimeout(() => {
+            ChatLib.command(`gc Congratulations ${username}, you guessed the correct number ${answer}!`);
+        }, 100);
+
+        return true;
+    },
+    (answer) => {
+        setTimeout(() => {
+            ChatLib.command(`gc The game was ended. The correct number was ${answer}.`);
+        }, 100);
     }
-
-    if (endMatch) {
-        const username = endMatch[1];
-        if (staff.includes(username)) {
-            setTimeout(() => {
-                ChatLib.command(`gc The game was ended. The correct number was ${targetNumber}.`);
-                guessinggame = false;
-                targetNumber = 0;
-            }, 100);
-        }
-    }
-
-    if (guessinggame) {
-        const guessRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @rng guess (\d+)/;
-        const guessMatch = cleanMessage.match(guessRegex);
-
-        if (guessMatch) {
-            const player = guessMatch[1];
-            const guess = parseInt(guessMatch[2], 10);
-
-            if (guess === targetNumber) {
-                setTimeout(() => {
-                    ChatLib.command(`gc Congratulations ${player}, you guessed the correct number ${targetNumber}!`);
-                    guessinggame = false;
-                    targetNumber = 0;
-                }, 100);
-            }
-        }
-    }
-}).setCriteria("Guild > ").setContains();
+);

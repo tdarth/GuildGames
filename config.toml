@@ -1,5 +1,6 @@
 
 [settings]
+	command_prefix = "@"
 	chat_prefix = "&8[&a&lGuild&2Games&8] &f"
 	"&a&l&ntoggle&r_&a&l&nmodule&r" = true
 

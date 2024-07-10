@@ -1,4 +1,6 @@
-import Settings from "./features/Settings";
+/// <reference types="../CTAutocomplete" />
+
+import Settings from "./Settings";
 
 // Commands
 import './commands/addStaff';
@@ -10,9 +12,6 @@ import './features/aiCommand';
 import './features/8ball';
 import './features/scramble';
 import './features/infoCommand';
-
-// Utils
-import './utils/words';
 
 register("command", () => Settings.openGUI()).setName('guildgames').setAliases('gamesguild', 'gg');
 
