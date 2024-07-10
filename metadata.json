@@ -1,8 +1,0 @@
-{
-  "name": "GuildGames",
-  "creator": "tdarth",
-  "description": "Play games with your other guild members!",
-  "version": "1.0.0",
-  "entry": "index.js",
-  "requires": ["Vigilance", "axios", "PogData"]
-}
