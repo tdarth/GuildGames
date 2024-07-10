@@ -1,4 +1,4 @@
-import Settings from '../features/Settings';
+import Settings from '../Settings';
 import PogObject from "PogData";
 
 const pogObject = new PogObject("GuildGames", {
