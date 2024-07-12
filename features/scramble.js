@@ -34,13 +34,13 @@ register("chat", (event) => {
     const message = ChatLib.getChatMessage(event);
     const cleanMessage = stripColorCodes(message);
 
-    const startRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble start/;
+    const startRegex = /^Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble start/;
     const startMatch = cleanMessage.match(startRegex);
 
-    const endRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble end/;
+    const endRegex = /^Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble end/;
     const endMatch = cleanMessage.match(endRegex);
 
-    const guessRegex = /Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble guess (\S+)/;
+    const guessRegex = /^Guild > (?:(?:\[[^\]]+\]\s)*)(\w+)(?:\s(?:\[[^\]]+\]))?: @scramble guess (\S+)/;
     const guessMatch = cleanMessage.match(guessRegex);
 
     if (startMatch) {
